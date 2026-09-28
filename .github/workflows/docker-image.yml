@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker build -t tusharpowar/cicd-pipline:latest .
+      run: docker build -t tusharpowar/cicd-pipeline:latest .
     - name: Push to Dockerhub
-      run: docker push tusharpowar/cicd-pipline:latest
+      run: docker push tusharpowar/cicd-pipeline:latest
     
