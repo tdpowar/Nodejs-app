@@ -14,12 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Login Dockerhub
-      env:
+      uses: docker/login-action@v3
+      with:
         DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      
     - name: Build the Docker image
-      run: docker build -t cicd-pipline .
+      run: docker build -t cicd-pipline:latest .
     - name: Push to Dockerhub
       run: docker push tusharpowar/cicd-pipline:latest
     
