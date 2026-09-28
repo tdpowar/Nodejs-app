@@ -19,7 +19,7 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Build the Docker image
-      run: docker build -t cicd-pipline
+      run: docker build -t cicd-pipline .
     - name: Push to Dockerhub
       run: Docker push tusharpowar/cicd-pipline:latest
     
