@@ -16,6 +16,7 @@ jobs:
     steps:
     - name: pull docker image 
       run: sudo docker pull tusharpowar/cicd-pipeline:latest
+      
     - name: delete old docker container
       run: sudo docker rm -f cicd-pipeline-container || true
     - name: run docker container
