@@ -1,24 +1,19 @@
-name: CD Pipline
+name: CD Pipeline
 
 on:
   workflow_run:
-    workflows: ["CI Pipline"]
+    workflows: ["CI Pipeline"]
     types:
       - completed
 
 jobs:
-
-
-  build:
-
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: self-hosted
 
     steps:
-    - name: pull docker image 
-      run: sudo docker pull tusharpowar/cicd-pipeline:latest
-      
-    - name: delete old docker container
-      run: sudo docker rm -f cicd-pipeline-container || true
-    - name: run docker container
-      run: sudo docker run -d -p 8080:5050 --name cicd-pipeline-container tusharpowar/cicd-pipeline
-    
+      - name: Deploy with Docker Compose
+        run: |
+          cd /home/ubuntu/nodejs-app
+          sudo docker compose -f mongodb.yml pull
+          sudo docker compose -f mongodb.yml up -d

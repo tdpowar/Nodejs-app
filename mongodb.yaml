@@ -1,10 +1,10 @@
 services:
 
   nodeapp:
-    image: testapp:1.0
+    image: tusharpowar/cicd-pipeline:latest
     container_name: nodeapp
     ports:
-      - "5050:5050"
+      - "8080:5050"
     depends_on:
       - mongo
 
